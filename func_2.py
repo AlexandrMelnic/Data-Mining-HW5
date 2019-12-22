@@ -115,10 +115,7 @@ def func_2(g, v, typ):
         p = g.nodes[n]['pos']
         folium.CircleMarker(location = [p[1], p[0]], radius = 10,color = "red",
                             popup = "Input Node", fill = True).add_to(m)
-        
-    #color="red"
-    for edge in s.edges():
-        folium.PolyLine([g.node[elem]['pos'] for elem in s.get_edge_data(edge[0], edge[1])['path']],color = 'blue', weight=2.5, opacity=1).add_to(m)
+     
 
     for e in edges:
         folium.PolyLine(locations = [(g.nodes[e[0]]['pos'][1],g.nodes[e[0]]['pos'][0]),
