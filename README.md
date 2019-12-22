@@ -25,4 +25,6 @@ This is the group 21 and it is composed by:
 
 5. __`main.py`__:
 	> Script that executes the whole system and it imports all the previous files
+	> It takes in input 1 argument (1, 2, 3, or 4)
+	> Ex to run it: python main.py 3
 
