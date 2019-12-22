@@ -1,11 +1,11 @@
+import networkx as nx
+import folium
 
-
-
-def func_1(v,d, typ):
+def func_1(g, v, d, typ):
     '''
     "v" is the initial node and d is the distance threshold and type is the distance type: distance,
     temporal and network. The function returns a folium object.
-
+    g is the graph
     '''
 
     # we are going to use a BFS algorithm with a distance

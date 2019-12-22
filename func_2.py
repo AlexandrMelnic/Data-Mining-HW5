@@ -1,5 +1,10 @@
+import numpy as np
+import math
+from func_3 import dijkstra
+import networkx as nx
+import folium
 
-def adj_matrix_task2(graph, l):
+def adj_matrix_task2(g, l):
     adj_mat = np.zeros((len(l), len(l)))
     i = 0
     for elem in l:
@@ -15,15 +20,15 @@ def adj_matrix_task2(graph, l):
 
 # return a sub graf
 # every edge have weights: path = list of nodes(shortest path), dist : distance/time/network(depends on the given mode)
-def graph_task2(graph, l_nodes, mode):
+def graph_task2(g, l_nodes, mode):
     new_g = nx.Graph()
     # add nodes
     for j in range(len(l_nodes)):
         # add latitude and longitude as an attribute to each node, in the format of a tuple
-        new_g.add_node(l_nodes[j], pos = graph.nodes[l_nodes[j]]['pos'][::-1] )
+        new_g.add_node(l_nodes[j], pos = g.nodes[l_nodes[j]]['pos'][::-1] )
             
     for i in range(len(l_nodes)):
-        adj_mat = adj_matrix_task2(graph, l_nodes)
+        adj_mat = adj_matrix_task2(g, l_nodes)
         current_node = i
         path = [l_nodes[current_node]]
 
@@ -39,7 +44,7 @@ def graph_task2(graph, l_nodes, mode):
         c_node = path[0]
         for n_node in path[1:]:
             if not new_g.get_edge_data(c_node, n_node):
-                weight = dijkstra(graph, c_node, n_node, mode)
+                weight = dijkstra(g, c_node, n_node, mode)
                 new_g.add_edge(c_node, n_node, path = weight[0], dist = weight[1])
             c_node = n_node
     return new_g
@@ -111,8 +116,15 @@ def func_2(g, v, typ):
         folium.CircleMarker(location = [p[1], p[0]], radius = 10,color = "red",
                             popup = "Input Node", fill = True).add_to(m)
         
+    #color="red"
+    for edge in s.edges():
+        folium.PolyLine([g.node[elem]['pos'] for elem in s.get_edge_data(edge[0], edge[1])['path']],color = 'blue', weight=2.5, opacity=1).add_to(m)
+
     for e in edges:
         folium.PolyLine(locations = [(g.nodes[e[0]]['pos'][1],g.nodes[e[0]]['pos'][0]),
                                      (g.nodes[e[1]]['pos'][1],g.nodes[e[1]]['pos'][0])], 
-                    line_opacity = 0.5).add_to(m)  
+                    line_opacity = 0.5, color = 'red').add_to(m)
+
+
+
     return(m)
