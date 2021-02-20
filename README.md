@@ -6,16 +6,16 @@ This is the group 21 and it is composed by:
   - Silviu Spac
 
 1. __`func_1.py`__:
-	> Functions used to run functionality 1
+	> Given an initial node and a distance, it plots a subgraph containing the initial node and all the nodes up to the selected distance 
 
 2. __`func_2.py`__:
-	> Functions used to run functionality 2
+	> Given a set of nodes it finds the MST through the Kruskal algorithm that contains all those nodes.
 
 3. __`func_3.py`__:
-	> Functions used to run functionality 3
+	> Given a set of nodes it computes the shortest path passing for all the nodes in order.
 
 4. __`func_4.py`__:
-	> Functions used to run functionality 4
+	> Given a set of nodes it computes the shortest walk passing for all the nodes not necesserily in order.
 
 5. __`get_data.py`__:
 	> Functions used to create the networkx graph, than we save it in a pickle file
